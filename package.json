@@ -1,0 +1,24 @@
+{
+  "name": "stock-echarts",
+  "version": "1.0.0",
+  "description": "Stock-Echarts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/startprogress/Stock-Echarts.git"
+  },
+  "author": "hbzhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/startprogress/Stock-Echarts/issues"
+  },
+  "homepage": "https://github.com/startprogress/Stock-Echarts#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "pm2": "^2.10.3",
+    "supervisor": "^0.12.0"
+  }
+}
