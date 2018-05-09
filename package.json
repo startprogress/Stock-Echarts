@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/startprogress/Stock-Echarts#readme",
   "dependencies": {
+    "echarts": "^4.1.0",
+    "ejs": "^2.6.1",
     "express": "^4.16.3",
     "pm2": "^2.10.3",
     "supervisor": "^0.12.0"

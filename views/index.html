@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="/javascript/echarts.min.js"></script>
+
+<head>
+  <title>Main</title>
+  <div id="main" style="width: 600px;height:400px;">
+    <h1>Echarts Test</h1>
+  </div> 
+</head>
+<body>
+
+  <script type="text/javascript">
+    // echarts demo
+    var myChart = echarts.init(document.getElementById('main'));
+    var option = {
+      title: {
+        text: 'ECharts Demo'
+      },
+      tooltip: {},
+      xAxis: {
+        data: ['A', 'B', 'C', 'D', 'E', 'F']
+      },
+      yAxis: {},
+      series: [{
+        name: 'Number',
+        type: 'bar',
+        data: [5, 20, 36, 10, 10, 20]
+      }]
+    };
+    myChart.setOption(option);
+  </script>
+
+</body>
+</style>
+</html>
