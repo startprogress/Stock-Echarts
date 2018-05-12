@@ -11,28 +11,26 @@
   </div> 
 </head>
 <body>
-
   <script type="text/javascript">
     // echarts demo
     var myChart = echarts.init(document.getElementById('main'));
     var option = {
       title: {
-        text: 'ECharts Demo'
+        text: "<%= title %>"
       },
       tooltip: {},
       xAxis: {
-        data: ['A', 'B', 'C', 'D', 'E', 'F']
+        data: ['今开', '最新', '最低', '最高']
       },
       yAxis: {},
       series: [{
-        name: 'Number',
-        type: 'bar',
-        data: [5, 20, 36, 10, 10, 20]
-      }]
+            name: '价格(元)',
+            type: 'bar',
+            data: [<%- stockData[0] %>, <%- stockData[1] %>, <%- stockData[4] %>, <%- stockData[5] %>]
+        }]
     };
     myChart.setOption(option);
   </script>
-
 </body>
 </style>
 </html>
