@@ -6,7 +6,7 @@
 
 <head>
   <title>Main</title>
-  <div id="main" style="width: 600px;height:400px;">
+  <div id="main" style="width: 1600px;height:400px;">
     <h1>Echarts Test</h1>
   </div> 
 </head>
@@ -20,13 +20,17 @@
       },
       tooltip: {},
       xAxis: {
-        data: ['今开', '最新', '最低', '最高']
+        data: [ <%- date %> ],
+        axisLabel: {
+          internal: 0,
+          rotate: -30,
+        }
       },
       yAxis: {},
       series: [{
             name: '价格(元)',
-            type: 'bar',
-            data: [<%- stockData[0] %>, <%- stockData[1] %>, <%- stockData[4] %>, <%- stockData[5] %>]
+            type: 'line',
+            data: [ <%- stockData %>]
         }]
     };
     myChart.setOption(option);
