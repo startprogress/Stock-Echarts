@@ -1,18 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
-<script type="text/javascript" src="/javascript/echarts.min.js"></script>
+  <script type="text/javascript" src="/javascript/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <script type="text/javascript" src="/javascript/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/javascript/echarts.min.js"></script>
 
-<head>
-  <title>Main</title>
-  <div id="main" style="width: 1600px;height:400px;">
-    <h1>Echarts Test</h1>
-  </div> 
-</head>
-<body>
+  <head>
+    <title>Main</title>
+    <h2 style="margin:10px">股票价格查询</h2>
+  </head>
+  <body>
+    <div class="input-group">
+      <div class="input-group mb-3">
+      
+        <div class="input-group-prepend1" id="basic-addon1">
+          <span class="input-group-text">股票代码</span>
+        </div>
+        <input id="stockCode" type="text" class="form-control" placeholder="6位数字" aria-label="Username" aria-describedby="basic-addon1">
+      
+        <div class="input-group-prepend2" id="basic-addon2">
+          <span class="input-group-text">开始日期</span>
+        </div>
+        <input id="startDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
+      
+        <div class="input-group-prepend3" id="basic-addon3">
+          <span class="input-group-text">结束日期</span>
+        </div>
+        <input id="endDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
+    
+        <span class="input-group-btn">
+          <button type="button" class="btn btn-primary">查询</button>
+        </span>
+      </div>
+    </div>
+    <!-- echarts -->
+    <div id="main" style="width:100%; height:400px;">
+    </div> 
+  </body>
+
   <script type="text/javascript">
-    // echarts demo
+    // echarts data
     var myChart = echarts.init(document.getElementById('main'));
     var option = {
       title: {
@@ -34,7 +63,12 @@
         }]
     };
     myChart.setOption(option);
+    // button click
+    $("button").click(function(){
+      var code = $("#stockCode").val();
+      var start = $("#startDate").val();
+      var end = $("#endDate").val();
+      location.href = "http://127.0.0.1:3000?code=" + code + "&start=" + start + "&end=" + end;
+    });
   </script>
-</body>
-</style>
 </html>

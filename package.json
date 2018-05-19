@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/startprogress/Stock-Echarts#readme",
   "dependencies": {
+    "bootstrap": "^4.1.1",
     "echarts": "^4.1.0",
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "pm2": "^2.10.3",
+    "jquery": "^3.3.1",
     "request": "^2.85.0",
     "supervisor": "^0.12.0"
   }
