@@ -5,9 +5,9 @@ var url = require('url');
 exports.root = function(req, res) {
   var params = url.parse(req.url, true).query;
   if (JSON.stringify(params) == "{}" ) {
-    res.render('index', {title: "", date: [], stockData: []});
+    res.render('index', {title: "", code: "", startDate: "", endDate: "", date: [], stockData: []});
   } else {
-    var stockRequestUrl = "http://q.stock.sohu.com/hisHq?code=cn_" + params.code + "&start=" + params.start+ "&end=" + params.end;
+    var stockRequestUrl = "http://q.stock.sohu.com/hisHq?code=cn_" + params.code + "&start=" + params.startDate+ "&end=" + params.endDate;
     request(stockRequestUrl, function (err, response, body) {
       if (err) console.log("Fail to request " + url);
       if (!err && response.statusCode == 200) {
@@ -21,7 +21,7 @@ exports.root = function(req, res) {
           stockData[len - 1 - i] = data['hq'][i][1];
           date[len - 1 - i] = '"' + data['hq'][i][0].substring(5,10) + '"';
         }
-        res.render('index', {title: title, date: date, stockData: stockData});
+        res.render('index', {title: title, code: params.code, startDate: params.startDate, endDate: params.endDate, date: date, stockData: stockData});
       }
     });
   }

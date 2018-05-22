@@ -18,17 +18,30 @@
         <div class="input-group-prepend1" id="basic-addon1">
           <span class="input-group-text">股票代码</span>
         </div>
-        <input id="stockCode" type="text" class="form-control" placeholder="6位数字" aria-label="Username" aria-describedby="basic-addon1">
-      
+        <% if (code !== null) { %>
+          <input id="stockCode" type="text" class="form-control" value="<%- code %>" aria-label="Username" aria-describedby="basic-addon1">
+        <% } else { %>
+          <input id="stockCode" type="text" class="form-control" placeholder="6位数字" aria-label="Username" aria-describedby="basic-addon1">
+        <% } %>
+
         <div class="input-group-prepend2" id="basic-addon2">
           <span class="input-group-text">开始日期</span>
         </div>
-        <input id="startDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
-      
+        <% if (startDate !== null) { %>
+          <input id="startDate" type="text" class="form-control" value="<%- startDate %>" aria-label="Username" aria-describedby="basic-addon1">
+        <% } else { %>
+          <input id="startDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
+        <% } %>
+   
         <div class="input-group-prepend3" id="basic-addon3">
           <span class="input-group-text">结束日期</span>
         </div>
-        <input id="endDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
+        
+        <% if (endDate !== null) { %>
+          <input id="endDate" type="text" class="form-control" value="<%- endDate %>" aria-label="Username" aria-describedby="basic-addon1">
+        <% } else { %>
+          <input id="endDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
+        <% } %>
     
         <span class="input-group-btn">
           <button type="button" class="btn btn-primary">查询</button>
@@ -66,9 +79,13 @@
     // button click
     $("button").click(function(){
       var code = $("#stockCode").val();
-      var start = $("#startDate").val();
-      var end = $("#endDate").val();
-      location.href = "http://127.0.0.1:3000?code=" + code + "&start=" + start + "&end=" + end;
+      var startDate = $("#startDate").val();
+      var endDate = $("#endDate").val();
+      location.href = "http://127.0.0.1:3000?code=" + code + "&startDate=" + startDate + "&endDate=" + endDate;
     });
+
+    $("input:text").click(function(){
+        $(this).select();
+    });    
   </script>
 </html>
