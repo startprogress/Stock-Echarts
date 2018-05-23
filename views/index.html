@@ -94,11 +94,18 @@
     }
 
     // button click
-    $("#searchButton").click(function(){
+    $("#searchButton").click(function() {
       var code = $("#stockCode").val();
       var startDate = $("#startDate").val();
       var endDate = $("#endDate").val();
       location.href = "http://127.0.0.1:3000?code=" + code + "&startDate=" + startDate + "&endDate=" + endDate;
+    });
+
+    // when keydown enter
+    $(document).keydown(function(event) {
+      if (event.keyCode==13) {
+        $("#searchButton").click();
+      }
     });
 
     // input select when clicked
