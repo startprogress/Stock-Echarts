@@ -42,48 +42,66 @@
         <% } else { %>
           <input id="endDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
         <% } %>
-    
+
         <span class="input-group-btn">
-          <button type="button" class="btn btn-primary">查询</button>
+          <button id="searchButton" type="button" class="btn btn-primary">查询</button>
         </span>
       </div>
     </div>
+
     <!-- echarts -->
-    <div id="main" style="width:100%; height:400px;">
-    </div> 
+    <% if (title !== "") { %>  
+      <div id="main" style="width:100%; height:400px;">
+      </div> 
+    <% } %>
+
+    <!-- Error Alert -->
+    <% if (err) { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> Your input may be wrong! 输入有误！
+        <button id="alertDismiss" type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% } %>
   </body>
 
   <script type="text/javascript">
-    // echarts data
-    var myChart = echarts.init(document.getElementById('main'));
-    var option = {
-      title: {
-        text: "<%= title %>"
-      },
-      tooltip: {},
-      xAxis: {
-        data: [ <%- date %> ],
-        axisLabel: {
-          internal: 0,
-          rotate: -30,
-        }
-      },
-      yAxis: {},
-      series: [{
-            name: '价格(元)',
-            type: 'line',
-            data: [ <%- stockData %>]
-        }]
-    };
-    myChart.setOption(option);
+    var title = "<%= title %>";
+    if (title !== "") {
+      // echarts data
+      var myChart = echarts.init(document.getElementById('main'));
+      var option = {
+        title: {
+          text: "<%= title %>"
+        },
+        tooltip: {},
+        xAxis: {
+          data: [ <%- date %> ],
+          axisLabel: {
+            internal: 0,
+            rotate: -30,
+          }
+        },
+        yAxis: {},
+        series: [{
+              name: '价格(元)',
+              type: 'line',
+              data: [ <%- stockData %>]
+          }]
+      };
+      myChart.setOption(option);
+    }
+
     // button click
-    $("button").click(function(){
+    $("#searchButton").click(function(){
       var code = $("#stockCode").val();
       var startDate = $("#startDate").val();
       var endDate = $("#endDate").val();
       location.href = "http://127.0.0.1:3000?code=" + code + "&startDate=" + startDate + "&endDate=" + endDate;
     });
 
+    // input select when clicked
     $("input:text").click(function(){
         $(this).select();
     });    
