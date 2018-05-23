@@ -18,7 +18,7 @@
         <div class="input-group-prepend1" id="basic-addon1">
           <span class="input-group-text">股票代码</span>
         </div>
-        <% if (code !== null) { %>
+        <% if (code !== "") { %>
           <input id="stockCode" type="text" class="form-control" value="<%- code %>" aria-label="Username" aria-describedby="basic-addon1">
         <% } else { %>
           <input id="stockCode" type="text" class="form-control" placeholder="6位数字" aria-label="Username" aria-describedby="basic-addon1">
@@ -27,7 +27,7 @@
         <div class="input-group-prepend2" id="basic-addon2">
           <span class="input-group-text">开始日期</span>
         </div>
-        <% if (startDate !== null) { %>
+        <% if (startDate !== "") { %>
           <input id="startDate" type="text" class="form-control" value="<%- startDate %>" aria-label="Username" aria-describedby="basic-addon1">
         <% } else { %>
           <input id="startDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
@@ -37,7 +37,7 @@
           <span class="input-group-text">结束日期</span>
         </div>
         
-        <% if (endDate !== null) { %>
+        <% if (endDate !== "") { %>
           <input id="endDate" type="text" class="form-control" value="<%- endDate %>" aria-label="Username" aria-describedby="basic-addon1">
         <% } else { %>
           <input id="endDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
