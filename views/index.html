@@ -91,7 +91,10 @@
               name: '价格(元)',
               type: 'line',
               data: [ <%- stockData %>]
-          }]
+        }],
+        dataZoom: {
+          show: true
+        }
       };
       myChart.setOption(option);
     }
