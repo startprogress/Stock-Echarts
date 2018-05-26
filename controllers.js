@@ -20,7 +20,7 @@ exports.root = function(req, res) {
           var len = data['hq'].length;
           for(i in data['hq']) {
             stockData[len - 1 - i] = data['hq'][i][1];
-            date[len - 1 - i] = '"' + data['hq'][i][0].substring(5,10) + '"';
+            date[len - 1 - i] = '"' + data['hq'][i][0].substring(0,10) + '"';
           }
           res.render('index', {title: title, code: params.code, startDate: params.startDate, endDate: params.endDate, date: date, stockData: stockData, err: false});
         } catch (err) {
