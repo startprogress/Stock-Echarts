@@ -19,6 +19,8 @@ exports.root = function(req, res) {
           var date = new Array();
           var len = data['hq'].length;
           for(i in data['hq']) {
+            // element order of the array is open, close, net change, net change percent, low, hign, vol, turnover, amount, we use close
+            // 数组元素的顺序为开盘价，收盘价，涨跌，涨幅，最低价，最高价，成交量，成交额，换手率， 这里使用收盘价
             stockData[len - 1 - i] = data['hq'][i][1];
             date[len - 1 - i] = '"' + data['hq'][i][0].substring(0,10) + '"';
           }
