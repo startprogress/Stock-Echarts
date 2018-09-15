@@ -2,10 +2,13 @@
 <html lang="zh-CN">
   <meta charset="UTF-8">
 
-  <script type="text/javascript" src="/javascript/jquery.min.js"></script>
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
-  <script type="text/javascript" src="/javascript/bootstrap.min.js"></script>
-  <script type="text/javascript" src="/javascript/echarts.min.js"></script>
+  <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/js/echarts.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+  <script type="text/javascript" src="/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
   <head>
     <title>Main</title>
@@ -15,33 +18,46 @@
     <div class="input-group">
       <div class="input-group mb-3">
       
-        <div class="input-group-prepend1" id="basic-addon1">
-          <span class="input-group-text">股票代码</span>
+        <div class="input-group-prepend1">
+          <label for="stockCode" class="input-group-text">股票代码</label>
         </div>
-        <% if (code !== "") { %>
-          <input id="stockCode" type="text" class="form-control" value="<%- code %>" aria-label="Username" aria-describedby="basic-addon1">
-        <% } else { %>
-          <input id="stockCode" type="text" class="form-control" placeholder="6位数字" aria-label="Username" aria-describedby="basic-addon1">
-        <% } %>
+        <div class="input-group col-md-2">
+          <% if (code !== "") { %>
+            <input id="stockCode" class="form-control" type="text" value="<%- code %>" data-link-field="stockCode">
+          <% } else { %>
+            <input id="stockCode" class="form-control" type="text" placeholder="6位股票代码" data-link-field="stockCode">
+          <% } %>
+        </div>
 
-        <div class="input-group-prepend2" id="basic-addon2">
-          <span class="input-group-text">开始日期</span>
+        <div class="input-group-prepend2">
+          <label for="startDate" class="input-group-text">开始日期</label>
         </div>
-        <% if (startDate !== "") { %>
-          <input id="startDate" type="text" class="form-control" value="<%- startDate %>" aria-label="Username" aria-describedby="basic-addon1">
-        <% } else { %>
-          <input id="startDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
-        <% } %>
-   
-        <div class="input-group-prepend3" id="basic-addon3">
-          <span class="input-group-text">结束日期</span>
+        <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyymmdd" data-link-format="yyyymmdd">
+          <% if (startDate !== "") { %>
+            <input id="startDate" class="form-control" type="text" value="<%- startDate %>" size="10" data-link-field="startDate">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+          <% } else { %>
+            <input id="startDate" class="form-control" type="text" value="" size="10" data-link-field="startDate">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+          <% } %>
         </div>
-        
-        <% if (endDate !== "") { %>
-          <input id="endDate" type="text" class="form-control" value="<%- endDate %>" aria-label="Username" aria-describedby="basic-addon1">
-        <% } else { %>
-          <input id="endDate" type="text" class="form-control" placeholder="YYYYMMDD" aria-label="Username" aria-describedby="basic-addon1">
-        <% } %>
+
+        <div class="input-group-prepend3">
+          <label for="endDate" class="input-group-text">结束日期</label>
+        </div>
+        <div class="input-group date form_date col-md-3" data-date="" data-date-format="yyyymmdd" data-link-format="yyyymmdd">
+          <% if (endDate !== "") { %>
+            <input id="endDate" class="form-control" type="text" value="<%- endDate %>" size="10" data-link-field="endDate">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+          <% } else { %>
+            <input id="endDate" class="form-control" type="text" value="" size="10" data-link-field="endDate">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+          <% } %>
+        </div>
 
         <span class="input-group-btn">
           <button id="searchButton" type="button" class="btn btn-primary">查询</button>
@@ -117,6 +133,18 @@
     // input select when clicked
     $("input:text").click(function(){
         $(this).select();
-    });    
+    });
+
+    $('.form_date').datetimepicker({
+      language:  'zh-CN',
+      weekStart: 1,
+      todayBtn:  1,
+      autoclose: 1,
+      todayHighlight: 1,
+      startView: 2,
+      minView: 2,
+      forceParse: 0,
+      pickerPosition: "bottom-left"
+    });
   </script>
 </html>
