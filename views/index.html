@@ -3,10 +3,12 @@
   <meta charset="UTF-8">
 
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/jquery-ui.min.css" />
   <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   <script type="text/javascript" src="/js/jquery.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="/js/echarts.min.js"></script>
+  <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
   <script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
   <script type="text/javascript" src="/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 
@@ -25,7 +27,7 @@
           <% if (code !== "") { %>
             <input id="stockCode" class="form-control" type="text" value="<%- code %>" data-link-field="stockCode">
           <% } else { %>
-            <input id="stockCode" class="form-control" type="text" placeholder="6位股票代码" data-link-field="stockCode">
+            <input id="stockCode" class="form-control" type="text" placeholder="股票代码/公司简称" data-link-field="stockCode">
           <% } %>
         </div>
 
@@ -145,6 +147,19 @@
       minView: 2,
       forceParse: 0,
       pickerPosition: "bottom-left"
+    });
+
+    $(function() {
+      var availableStockCode = [];
+      $.getJSON("data/stockCode.json", function (data){
+          $.each(data, function (infoIndex, info){
+            availableStockCode.push({"label": info["label"], "value": info["value"]});
+          })
+      });
+      $( "#stockCode" ).autocomplete({
+          source: availableStockCode,
+          minLength: 4
+      });
     });
   </script>
 </html>
